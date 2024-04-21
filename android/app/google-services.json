@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339590723702",
+    "project_id": "fireloginapp-e34a0",
+    "storage_bucket": "fireloginapp-e34a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339590723702:android:34ab224128b3ffe4db4757",
+        "android_client_info": {
+          "package_name": "com.example.firebase_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADX-UG31Y2wP2a9-fO_SMl58jWPniaoMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
