@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_login/firestore/fireadd.dart';
 import 'package:flutter/material.dart';
 
 class NoteScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   final collectionRef =
       FirebaseFirestore.instance.collection('Notes').snapshots();
+
+  CollectionReference ref = FirebaseFirestore.instance.collection('Notes');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +37,25 @@ class _NoteScreenState extends State<NoteScreen> {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   return ListTile(
+                    onTap: () {
+                      // ref
+                      //     .doc(snapshot.data!.docs[index]['id'])
+                      //     .update({'description': "I am a flutter developer!"});
+
+                      ref.doc(snapshot.data!.docs[index]['id']).delete();
+                    },
                     title: Text(snapshot.data!.docs[index]['description']),
                     subtitle: Text(snapshot.data!.docs[index]['id']),
                   );
                 });
           }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddNote()));
+        },
+        child: Text("Add"),
+      ),
     );
   }
 }

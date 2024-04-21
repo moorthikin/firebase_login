@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_login/firestore/fireadd.dart';
 import 'package:firebase_login/firestore/firepost.dart';
+import 'package:firebase_login/flutterstorage/Imagescreen.dart';
 import 'package:firebase_login/ui/home.dart';
 import 'package:firebase_login/ui/login.dart';
 import 'package:firebase_login/ui/signup.dart';
@@ -16,7 +17,7 @@ class SplashService {
       Timer(
           const Duration(seconds: 3),
           () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => NoteScreen())));
+              context, MaterialPageRoute(builder: (context) => ImageScreen())));
     } else {
       Timer(
           const Duration(seconds: 3),
