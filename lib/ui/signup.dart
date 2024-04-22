@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_login/flutterstorage/Imagescreen.dart';
+import 'package:firebase_login/ui/forget_screen.dart';
 import 'package:firebase_login/ui/home.dart';
 import 'package:firebase_login/ui/login.dart';
 import 'package:firebase_login/ui/phone.dart';
@@ -34,7 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
         isLoading = false;
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => ImageScreen()));
     }).onError((error, stackTrace) {
       setState(() {
         isLoading = false;
@@ -138,6 +140,24 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: TextStyle(color: Colors.blue),
                   ))
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 50),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ForgetScreen()));
+                  },
+                  child: Text(
+                    "Forget password",
+                    style: TextStyle(color: Colors.blue),
+                  )),
+            ),
           ),
           SizedBox(
             height: 30,

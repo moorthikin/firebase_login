@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_login/widgets/custom_button.dart';
+import 'package:firebase_login/widgets/toast.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,7 +15,10 @@ class ImageScreen extends StatefulWidget {
 }
 
 class _ImageScreenState extends State<ImageScreen> {
+  final databaseRef = FirebaseDatabase.instance.ref('Post');
   File? _image;
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -54,7 +60,28 @@ class _ImageScreenState extends State<ImageScreen> {
           SizedBox(
             height: 20,
           ),
-          CustomButton(ontap: () {}, title: "Upload")
+          CustomButton(
+              ontap: () async {
+                firebase_storage.Reference ref = firebase_storage
+                    .FirebaseStorage.instance
+                    .ref("/images/" + "1234");
+
+                firebase_storage.UploadTask upload =
+                    ref.putFile(_image!.absolute);
+
+                Future.value(upload).then((value) async {
+                  var newUrl = await ref.getDownloadURL();
+                  databaseRef.child("1234").set({
+                    'post': newUrl.toString(),
+                    'id': DateTime.now().microsecondsSinceEpoch.toString()
+                  }).then((value) {
+                    Toast().toastMessage("Image uploaded");
+                  }).onError((error, stackTrace) {
+                    Toast().toastMessage(error.toString());
+                  });
+                });
+              },
+              title: "Upload")
         ],
       ),
     );

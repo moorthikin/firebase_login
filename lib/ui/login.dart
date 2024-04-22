@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_login/flutterstorage/Imagescreen.dart';
 import 'package:firebase_login/ui/home.dart';
 import 'package:firebase_login/widgets/custom_button.dart';
 import 'package:firebase_login/widgets/toast.dart';
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => ImageScreen()));
     }).onError((error, stackTrace) {
       setState(() {
         isLoading = false;
