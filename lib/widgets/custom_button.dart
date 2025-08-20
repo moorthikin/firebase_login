@@ -29,8 +29,6 @@ class CustomButton extends StatelessWidget {
                   title,
                   style: TextStyle(color: Colors.white),
                 ),
-
-//For test the Graphite this comment is added in this line.
         ),
       ),
     );
